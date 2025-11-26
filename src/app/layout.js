@@ -4,6 +4,7 @@ import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import { getServerSession } from "next-auth";
 import Providers from "@/app/Providers"
+import { Toaster } from "react-hot-toast";
 
 
 const geistSans = Geist({
@@ -31,6 +32,7 @@ export default async function RootLayout({ children }) {
         
         
           <Providers>
+            <Toaster></Toaster>
             <Navbar></Navbar>
             {children}
           </Providers>

@@ -1,14 +1,12 @@
-import Link from 'next/link'
-import React from 'react'
+import EventsList from "./EventsList";
 
-export default function EventsPage() {
-  return (
-    <div className='flex flex-col'>
-        <Link href={'/events/1'}>event 1</Link>
-        <Link href={'/events/2'}>event 2</Link>
-        <Link href={'/events/3'}>event 3</Link>
-        <Link href={'/events/4'}>event 4</Link>
-        <Link href={'/events/5'}>event 5</Link>
-    </div>
-  )
+export default async function EventsPage() {
+  const res = await fetch("http://localhost:3000/api/events", {
+    cache: "no-store", // always fetch latest from DB
+  });
+
+  const events = await res.json();
+
+  return <EventsList events={events} />;
 }
+

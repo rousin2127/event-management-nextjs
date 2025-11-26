@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 import clientPromise from "@/lib/db";
 
 
+
 const handler = NextAuth({
   session: { strategy: "jwt" },
 

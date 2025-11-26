@@ -35,14 +35,14 @@ export default function Navbar() {
           {open && (
             <div className="absolute bg-white shadow-md p-3 flex flex-col top-6 left-0 w-40 rounded">
               <Link
-                href="/dashboard/add-event"
+                href="/add-events"
                 className="hover:bg-gray-100 p-2 rounded"
               >
                 Add Event
               </Link>
 
               <Link
-                href="/dashboard/manage-events"
+                href="/manage-events"
                 className="hover:bg-gray-100 p-2 rounded"
               >
                 Manage Events

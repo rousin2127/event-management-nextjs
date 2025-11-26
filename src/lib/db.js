@@ -1,27 +1,16 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
 
-if(!process.env.DB_URI) {
-    throw new Error("Mongo Uri not Found !")
-}
+import { MongoClient } from "mongodb";
 
 const uri = process.env.DB_URI;
+if (!uri) throw new Error("Please define DB_URI in your environment");
 
 let client;
 let clientPromise;
 
-// Reuse connection during development (important for Next.js hot reload)
 if (!global._mongoClientPromise) {
-  client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    },
-  });
-
+  client = new MongoClient(uri);
   global._mongoClientPromise = client.connect();
 }
-
 clientPromise = global._mongoClientPromise;
 
 export default clientPromise;
