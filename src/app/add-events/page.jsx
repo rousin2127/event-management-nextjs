@@ -49,12 +49,12 @@ export default function AddEvent() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Add New Event</h1>
+    <div className="max-w-2xl my-10 mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-4 text-pink-700">Add New Event</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
 
-        {/* Title */}
+        
         <input
           type="text"
           placeholder="Event Title"
@@ -64,7 +64,7 @@ export default function AddEvent() {
           required
         />
 
-        {/* Short Description */}
+        
         <input
           type="text"
           placeholder="Short Description"
@@ -74,7 +74,7 @@ export default function AddEvent() {
           required
         />
 
-        {/* Full Description */}
+        
         <textarea
           placeholder="Full Description"
           className="w-full p-3 border rounded"
@@ -84,7 +84,7 @@ export default function AddEvent() {
           required
         />
 
-        {/* Price / Date / Priority */}
+        
         
           <input
             type="number"
@@ -107,7 +107,7 @@ export default function AddEvent() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="mt-4 w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700"
+          className="mt-4 w-full bg-pink-600 text-white p-3 rounded hover:bg-pink-700"
         >
           Add Event
         </button>

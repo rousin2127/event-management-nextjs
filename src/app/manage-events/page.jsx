@@ -36,7 +36,7 @@ export default function ManageEventsPage() {
 
   return (
     <main className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Manage Events</h1>
+      <h1 className="text-3xl font-bold mb-6 text-pink-700">Manage Events</h1>
 
       {/* Empty State */}
       {events.length === 0 && (
@@ -61,14 +61,14 @@ export default function ManageEventsPage() {
             <div className="mt-auto flex justify-between items-center gap-2 pt-4">
               <Link
                 href={`/events/${ev._id}`}
-                className="px-3 py-2 bg-indigo-600 text-white rounded-lg text-sm w-full text-center"
+                className="px-3 py-2 bg-gray-600 text-white rounded-lg text-sm w-full text-center"
               >
                 View
               </Link>
 
               <button
                 onClick={() => handleDelete(ev._id)}
-                className="px-3 py-2 bg-red-500 text-white rounded-lg text-sm w-full"
+                className="px-3 py-2 bg-pink-700 text-white rounded-lg text-sm w-full"
               >
                 Delete
               </button>

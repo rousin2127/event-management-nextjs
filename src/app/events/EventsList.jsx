@@ -35,7 +35,7 @@ const filtered = useMemo(() => {
   return (
     <main className="p-6 max-w-7xl mx-auto">
       <header className="mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold mb-2">Events</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-2 text-pink-700/80">Events</h1>
         <p className="text-gray-600">
           Discover upcoming events — search, filter by category, and view details.
         </p>
@@ -68,7 +68,7 @@ const filtered = useMemo(() => {
         {filtered.map((ev) => (
           <div
             key={ev._id}
-            className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col"
+            className="bg-white rounded-2xl shadow-md shadow-pink-700/80 overflow-hidden flex flex-col"
           >
             <img
               src={ev.image ?? "https://placehold.co/600x400?text=No+Image"}
