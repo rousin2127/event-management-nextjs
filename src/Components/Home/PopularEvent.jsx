@@ -54,13 +54,13 @@ export default function PopularEventsPage() {
               </p>
 
               <div className="mt-auto flex justify-between items-center">
-                <span className="font-semibold text-indigo-600">
+                <span className="font-semibold text-pink-600">
                   {ev.price ? `BDT ${ev.price}` : "Free"}
                 </span>
 
                 <Link
                   href={`/events/${ev._id}`}
-                  className="px-4 py-2 border rounded-lg text-sm hover:bg-gray-100"
+                  className="px-4 py-2 border rounded-lg text-sm hover:bg-pink-700"
                 >
                   Details
                 </Link>

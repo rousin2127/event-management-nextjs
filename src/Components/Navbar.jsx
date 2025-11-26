@@ -3,16 +3,16 @@
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"; // Install @heroicons/react
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"; 
 
 export default function Navbar() {
   const { data: session } = useSession();
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Controls mobile menu visibility
-  const [isDashboardOpen, setIsDashboardOpen] = useState(false); // Controls dashboard dropdown
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
-  // --- Helper Components for Cleanliness ---
+  const [isDashboardOpen, setIsDashboardOpen] = useState(false); 
+  
 
-  // Component for standard navigation links
+
   const NavLinks = ({ onClick }) => (
     <>
       <Link href="/" onClick={onClick}>Home</Link>
@@ -22,7 +22,6 @@ export default function Navbar() {
     </>
   );
 
-  // Component for Auth/User status
   const AuthStatus = () => (
     <>
       {!session ? (
@@ -55,14 +54,11 @@ export default function Navbar() {
           <span className="text-pink-700/80">E</span>VENT<span className="text-pink-700/80">L</span>AB
         </Link>
 
-        {/* --- DESKTOP VIEW (Hidden on Mobile) --- */}
         <div className="hidden lg:flex items-center gap-8">
           
-          {/* CENTER: Menu Links */}
           <div className="flex items-center gap-8">
             <NavLinks />
             
-            {/* Dashboard Dropdown */}
             <div className="relative">
               <p
                 onClick={() => setIsDashboardOpen(!isDashboardOpen)}
@@ -74,7 +70,7 @@ export default function Navbar() {
               {isDashboardOpen && (
                 <div 
                   className="absolute bg-white shadow-lg border border-gray-100 p-2 flex flex-col top-8 right-0 w-48 rounded z-50"
-                  onBlur={() => setIsDashboardOpen(false)} // Optional: Close on outside click/focus loss
+                  onBlur={() => setIsDashboardOpen(false)} 
                 >
                   <Link
                     href="/add-events"
@@ -96,28 +92,25 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* RIGHT: Auth Links */}
           <div className="flex items-center gap-6">
             <AuthStatus />
           </div>
         </div>
         
-        {/* --- MOBILE TOGGLE BUTTON (Visible on Mobile) --- */}
         <div className="flex lg:hidden items-center">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="p-2 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             {isMenuOpen ? (
-              <XMarkIcon className="h-6 w-6" /> // Close Icon
+              <XMarkIcon className="h-6 w-6" /> 
             ) : (
-              <Bars3Icon className="h-6 w-6" /> // Menu Icon
+              <Bars3Icon className="h-6 w-6" /> 
             )}
           </button>
         </div>
       </div>
 
-      {/* --- MOBILE MENU PANEL (Conditionally Rendered) --- */}
       <div 
         className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden ${
           isMenuOpen ? 'max-h-96 opacity-100 py-4' : 'max-h-0 opacity-0'
@@ -125,12 +118,10 @@ export default function Navbar() {
       >
         <div className="flex flex-col space-y-3 px-4 sm:px-6 pb-4">
           
-          {/* Mobile Nav Links */}
           <NavLinks onClick={() => setIsMenuOpen(false)} />
 
           <hr className="my-2 border-gray-200" />
           
-          {/* Mobile Dashboard Links */}
           <div className="flex flex-col space-y-2 pl-4">
             <p className="font-semibold text-gray-500 pt-1">Dashboard</p>
             <Link
@@ -151,7 +142,6 @@ export default function Navbar() {
           
           <hr className="my-2 border-gray-200" />
 
-          {/* Mobile Auth Status */}
           <div className="flex flex-col space-y-2 mt-2">
             <AuthStatus />
           </div>
@@ -161,5 +151,3 @@ export default function Navbar() {
   );
 }
 
-// NOTE: You will need to install the heroicons library to use the icons:
-// npm install @heroicons/react

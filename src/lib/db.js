@@ -1,3 +1,22 @@
+// import mongoose from "mongoose"
+
+// export async function connect() {
+//   try {
+//     mongoose.connect(process.env.DB_URI)
+//     const connection = mongoose.connection
+//     return connection
+//   } catch (error) {
+//     console.log("errorooroororororoor")
+//   }
+// }
+
+
+
+
+
+
+
+
 
 import { MongoClient } from "mongodb";
 

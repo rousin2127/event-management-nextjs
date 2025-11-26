@@ -4,18 +4,18 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
-import { FaGoogle } from 'react-icons/fa'; // Install react-icons for the Google logo
+import { FaGoogle } from 'react-icons/fa'; 
 
 export default function RegisterPage() {
   const router = useRouter();
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // New state for loading feedback
+  const [loading, setLoading] = useState(false); 
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
-    setLoading(true); // Start loading feedback
+    setError(""); 
+    setLoading(true); 
 
     try {
       const res = await fetch("/api/register", {
@@ -28,17 +28,16 @@ export default function RegisterPage() {
 
       const data = await res.json();
 
-      if (!res.ok) { // Check if the response status is not OK (e.g., 400, 500)
+      if (!res.ok) { 
         setError(data.error || "An unexpected error occurred.");
       } else {
-        // Assuming successful registration, redirect to login
         router.push("/login?message=registration_success");
       }
     } catch (err) {
       console.error("Registration error:", err);
       setError("Failed to connect to the server. Please try again.");
     } finally {
-      setLoading(false); // End loading feedback
+      setLoading(false); 
     }
   };
 
@@ -49,7 +48,6 @@ export default function RegisterPage() {
   return (
     <div className="max-w-7xl mx-auto min-h-[70vh] flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       
-      {/* Register Card Container */}
       <div className="w-full max-w-md space-y-8 bg-white p-8 sm:p-10 shadow-xl rounded-2xl">
         
         {/* Header */}
