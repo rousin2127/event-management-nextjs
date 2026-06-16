@@ -8,7 +8,7 @@ export default function ManageEventsPage() {
 
   // Load all events
   const fetchEvents = async () => {
-    const res = await fetch("http://localhost:3000/api/events", { cache: "no-store" });
+    const res = await fetch("/api/events", { cache: "no-store" });
     const data = await res.json();
     setEvents(data || []);
   };

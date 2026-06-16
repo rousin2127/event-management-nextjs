@@ -8,7 +8,7 @@ export default function PopularEventsPage() {
 
   useEffect(() => {
     async function loadEvents() {
-      const res = await fetch("http://localhost:3000/api/events", {
+      const res = await fetch("/api/events", {
         cache: "no-store",
       });
       const data = await res.json();
