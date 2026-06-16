@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# EventLab — Event Management App
 
-## Getting Started
+A Next.js (App Router) event management project with authentication (NextAuth) and MongoDB Atlas persistence. Users can browse events, and authenticated users can add/manage events via protected dashboard routes.
 
-First, run the development server:
+## Key Features
+
+- **Authentication**: NextAuth with Google login and Credentials (email/password)
+- **MongoDB Atlas**: Stores users and events in MongoDB (`event_management` database)
+- **Events API**: Create and fetch events via `/api/events`
+- **Protected Dashboard Pages**: Middleware-protected `/add-events` and `/manage-events`
+- **UI**: Tailwind-styled pages including Events list, Popular Events, Add Event, Manage Events
+
+## Setup & Installation
+
+### Prerequisites
+
+- Node.js (LTS recommended)
+- A MongoDB Atlas cluster + database user
+- Google OAuth credentials (optional, only if using Google login)
+
+### 1) Install dependencies
+
+```bash
+npm install
+```
+
+### 2) Create environment variables
+
+Create a `.env.local` file in the project root:
+
+```bash
+DB_URI="mongodb+srv://<user>:<password>@<cluster-host>/event_management?retryWrites=true&w=majority"
+
+NEXTAUTH_SECRET="replace-with-a-long-random-secret"
+NEXTAUTH_URL="http://localhost:3000"
+
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+```
+
+Notes:
+
+- **`DB_URI`** must be a real Atlas connection string (not `mongodb://localhost...`).
+- The app uses the DB name **`event_management`**.
+- If you don’t want Google login, you can omit `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`.
+
+### 3) Run the app locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Route Summary
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Pages (App Router)
 
-## Learn More
+- **`/`**: Home page
+- **`/events`**: Events listing page (loads from events API)
+- **`/add-events`**: Add event form (**protected**)
+- **`/manage-events`**: Manage/delete events (**protected**)
+- **`/login`**: Login page
+- **`/register`**: Register page
 
-To learn more about Next.js, take a look at the following resources:
+### API Routes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **`/api/events`**
+  - `GET`: Fetch all events
+  - `POST`: Create one or many events
+- **`/api/events/[id]`**
+  - `GET`: Fetch a single event by MongoDB `_id`
+  - `DELETE`: Delete a single event by MongoDB `_id`
+- **`/api/register`**
+  - `POST`: Create a user (email/password)
+- **`/api/auth/[...nextauth]`**
+  - NextAuth handler (Google + Credentials)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Middleware (Route Protection)
 
-## Deploy on Vercel
+- `src/middleware.js` protects:
+  - `/add-events/*`
+  - `/manage-events/*`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy (Vercel)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Push the repo to GitHub
+2. Import into Vercel
+3. Set Vercel Environment Variables:
+   - `DB_URI`
+   - `NEXTAUTH_SECRET`
+   - `NEXTAUTH_URL` (your deployed URL)
+   - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` (if using Google login)
+4. Deploy
